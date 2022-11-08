@@ -1,0 +1,3 @@
+# Notification
+Although i called it the '32bits adder', but it actually performs the function of 1 bit adder now.
+If you wanna clone this repository you can modify this project on your wish...
