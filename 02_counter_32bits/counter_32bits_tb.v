@@ -25,28 +25,29 @@ module counter_test();
     );
 
 `ifdef FSDB
-initial
-    begin
+initial begin
         $fsdbDumpfile("counter_32bits.fsdb");
         $fsdbDumpvars(0,cnt1);
+
+        /* start VCS simulation */
         $fsdbDumpon();
-    end
+        #10000000;
+        $fsdbDumpoff();
+
+        /* finish VCS simulation */
+        $finish;
+end
 `endif
 
     assign reset_positive = 1'b0;
     assign enable = 1'b0;
 
 parameter clk_period = 10;
-initial 
-    begin
+initial begin
         clk_in = 0;
         forever
              #(clk_period/2) clk_in = ~clk_in;
-    end
+end
 
-    initial begin
-        #1000000000000000000000;
-        $finish;
-    end
 
-endmodule
+endmodul
