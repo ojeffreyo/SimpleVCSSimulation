@@ -1,0 +1,12 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make: Entering directory 'f:/Simple_VCS_Simulation'
+make  flist
+mkdir -p ./fsdbfiles
+vcs -f ./01_adder_32bits/01_adder_32bits.list  \
+	-R 						\
+	-timescale=1ns/1ns 		\
+	+v2k 					\
+	-fsdb +define+FSDB					
+mv *.fsdb ./fsdbfiles
+make: Leaving directory 'f:/Simple_VCS_Simulation'
+ 
