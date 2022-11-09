@@ -39,15 +39,25 @@ initial begin
 end
 `endif
 
+
     assign reset_positive = 1'b0;
     assign enable = 1'b0;
+    parameter clk_period = 10;
+    initial begin
 
-parameter clk_period = 10;
-initial begin
-        clk_in = 0;
-        forever
-             #(clk_period/2) clk_in = ~clk_in;
-end
+            clk_in = 1'b0;
+            #(clk_period/2) clk_in = ~clk_in;
+            forever
+                #(clk_period/2) clk_in = ~clk_in;
+    end
 
 
-endmodul
+    initial begin
+
+            #2000;
+            #100 force reset_positive = 1'b1;
+            #100 force reset_positive = 1'b0;
+    end
+
+
+endmodule
